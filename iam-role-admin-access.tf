@@ -39,7 +39,20 @@ resource "aws_iam_policy" "cdg_admin_policy" {
 
             ],
             "Resource": "${aws_s3_bucket.dynamic_contents_bucket.arn}"
-        }
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+          
+            "dynamodb:GetItem",
+            "dynamodb:Query"
+          
+          ],
+          "Resource": [
+            "${aws_dynamodb_table.stats_dynamodb_table.arn}"
+            
+          ]
+    }
     ]
 }
 EOF
