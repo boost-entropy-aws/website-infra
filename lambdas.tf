@@ -239,7 +239,8 @@ module "blog_upload_event_handler_lambda" {
         "Effect": "Allow",
         "Action": [         
           "dynamodb:PutItem",
-          "dynamodb:UpdateItem"
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem"
         ],
         "Resource": "${aws_dynamodb_table.dynamodb_table.arn}"
       },
@@ -287,7 +288,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 
   lambda_function {
     lambda_function_arn = module.blog_upload_event_handler_lambda.function_arn
-    events              = ["s3:ObjectCreated:*"]
+    events              = ["s3:ObjectCreated:*","s3:ObjectRemoved:*"]
     filter_prefix       = "blogs/"
 
   }

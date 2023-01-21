@@ -45,7 +45,7 @@ data "aws_iam_policy_document" "dynamic_content_s3_policy" {
 
   }
   statement {
-    actions   = ["s3:*"]
+    actions   = ["s3:PutObject"]
     resources = ["${aws_s3_bucket.dynamic_contents_bucket.arn}/*"]
 
     principals {
@@ -67,7 +67,7 @@ data "aws_iam_policy_document" "dynamic_content_s3_policy" {
 
   }
   statement {
-    actions   = ["s3:*"]
+    actions   = ["s3:PutObject"]
     resources = ["${aws_s3_bucket.dynamic_contents_bucket.arn}/*"]
 
     principals {
