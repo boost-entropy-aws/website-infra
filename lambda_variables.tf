@@ -47,23 +47,7 @@ variable "blog_upload_handler_name" {
   type = string
 
 }
-variable "visitor_log_entry_source_key" {
-  type = string
 
-}
-variable "visitor_log_entry_handler_name" {
-  type = string
-
-}
-
-variable "visitor_update_stats_source_key" {
-  type = string
-
-}
-variable "visitor_update_stats_handler_name" {
-  type = string
-
-}
 
 variable "cognito_preauth_handler_source_key" {
   type = string

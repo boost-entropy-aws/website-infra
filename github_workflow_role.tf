@@ -1,10 +1,4 @@
-module "iam_github_oidc_provider" {
-  source    = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
 
-  tags = {
-    Environment = "test"
-  }
-}
 resource "aws_iam_role" "website_github_workflow_role" {
   name = "website_github_workflow_role"
 
@@ -15,7 +9,7 @@ resource "aws_iam_role" "website_github_workflow_role" {
        {
            "Effect": "Allow",
            "Principal": {
-               "Federated": "${module.iam_github_oidc_provider.arn}"
+               "Federated": "arn:aws:iam::${data.aws_caller_identity.default.account_id}:oidc-provider/token.actions.githubusercontent.com"
            },
            "Action": "sts:AssumeRoleWithWebIdentity",
            "Condition": {
@@ -70,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "github_policy-attach" {
   policy_arn = aws_iam_policy.website_github_workflow_policy.arn
 }
 
-output "github_role_arn"{
-    value = aws_iam_role.website_github_workflow_role.arn
+output "github_role_arn" {
+  value = aws_iam_role.website_github_workflow_role.arn
 
 }

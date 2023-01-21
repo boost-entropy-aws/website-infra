@@ -38,7 +38,7 @@ module "testimonial_ddb_update_handler_lambda" {
   source_bucket = var.lambda_source_bucket
   source_key    = var.testimonial_ddb_update_handler_source_key
   handler       = var.testimonial_ddb_update_handler_name
-    policy        = <<EOF
+  policy        = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -90,7 +90,7 @@ module "testimonial_ddb_update_handler_lambda" {
   ]
 }
 EOF
- 
+
 
 
   function_url_enabled = false
@@ -103,7 +103,7 @@ EOF
     from_mail_id = var.from_mail_id
     to_mail_id   = var.to_mail_id
   }
-   runtime = "go1.x"
+  runtime = "go1.x"
 }
 
 
@@ -114,7 +114,7 @@ module "blogs_ddb_update_handler" {
   source_bucket = var.lambda_source_bucket
   source_key    = var.blogs_ddb_update_event_handler_source_key
   handler       = var.blogs_ddb_update_event_handler_name
-  policy=<<EOF
+  policy        = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -167,7 +167,7 @@ module "blogs_ddb_update_handler" {
   ]
 }
 EOF
- 
+
 
 
   function_url_enabled = false
@@ -178,10 +178,10 @@ EOF
     workflow_file_name = "deploy.yml"
     branch             = "main"
     token_name         = var.token_variable_name
-    table_name   = var.dynamodb_table_name
-    region_name  = var.region
-    bucket_name  = local.computed_dynamic_contents_bucket_name
-     file_name    = "dynamic/blogs.json"
+    table_name         = var.dynamodb_table_name
+    region_name        = var.region
+    bucket_name        = local.computed_dynamic_contents_bucket_name
+    file_name          = "dynamic/blogs.json"
 
   }
   runtime = "go1.x"
@@ -212,7 +212,7 @@ module "list_blogs" {
   ]
 }
 EOF
-  
+
 
 
   function_url_enabled = true
@@ -231,7 +231,7 @@ module "blog_upload_event_handler_lambda" {
   function_name = "BlogsUploadEventHandler"
   source_bucket = var.lambda_source_bucket
   source_key    = var.blog_upload_handler_source_key
-    policy        = <<EOF
+  policy        = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -257,7 +257,7 @@ module "blog_upload_event_handler_lambda" {
   ]
 }
 EOF
- 
+
 
   handler              = var.blog_upload_handler_name
   function_url_enabled = false
@@ -288,7 +288,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 
   lambda_function {
     lambda_function_arn = module.blog_upload_event_handler_lambda.function_arn
-    events              = ["s3:ObjectCreated:*","s3:ObjectRemoved:*"]
+    events              = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
     filter_prefix       = "blogs/"
 
   }

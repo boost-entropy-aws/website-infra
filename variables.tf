@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "cdg"
+  default = "www"
 }
 variable "profile" {
   type    = string
@@ -23,8 +23,8 @@ variable "dynamodb_table_name" {
   default = "CdgDynamicContents"
 
 }
-variable "stats_dynamodb_table_name"{
-  type = string
+variable "stats_dynamodb_table_name" {
+  type    = string
   default = "CdgWebsiteStatistics"
 
 }

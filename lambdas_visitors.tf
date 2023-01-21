@@ -1,3 +1,4 @@
+/**
 module "visitor_log_entry_lambda" {
   source        = "./lambdas"
   function_name = "VisitorLogEntry"
@@ -83,3 +84,4 @@ EOF
   }
   runtime = "go1.x"
 }
+*/

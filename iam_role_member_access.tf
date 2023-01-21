@@ -43,14 +43,14 @@ data "aws_iam_policy_document" "assume_unauthenticated_role" {
   }
 }
 resource "aws_iam_role" "authenticated" {
-  name               = "${var.prefix}AuthenticatedAssumeRole"
+  name               = "${var.app_name}AuthenticatedAssumeRole"
   assume_role_policy = data.aws_iam_policy_document.assume_authenticated_role.json
 }
 
 
 
 resource "aws_iam_role" "unauthenticated" {
-  name               = "${var.prefix}UnauthenticatedAssumeRole"
+  name               = "${var.app_name}UnauthenticatedAssumeRole"
   assume_role_policy = data.aws_iam_policy_document.assume_unauthenticated_role.json
 }
 

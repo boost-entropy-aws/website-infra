@@ -6,14 +6,14 @@ module "cognito_user_pool" {
 
   source                   = "lgallard/cognito-user-pool/aws"
   version                  = "0.19.0"
-  user_pool_name           = "${var.prefix}_pool"
+  user_pool_name           = "${var.app_name}_pool"
   alias_attributes         = ["email"]
   auto_verified_attributes = ["email"]
 
   email_configuration = {
     email_sending_account  = "DEVELOPER"
     reply_to_email_address = var.reply_to_email_address
-    source_arn             = "arn:aws:ses:us-east-1:721541693596:identity/aravamudhan.pavithra@craneww.com"
+    source_arn             = "arn:aws:ses:us-east-1:${data.aws_caller_identity.default.account_id}:identity/a.pavithraa@gmail.com"
   }
 
   lambda_config = {
@@ -69,7 +69,7 @@ resource "aws_cognito_user_pool_domain" "main" {
 }
 
 resource "aws_cognito_identity_pool" "identity_pool" {
-  identity_pool_name               = "${var.prefix}_identity_pool"
+  identity_pool_name               = "${var.app_name}_identity_pool"
   allow_unauthenticated_identities = false
   allow_classic_flow               = false
 

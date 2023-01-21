@@ -4,8 +4,8 @@ module "presignup_cognito" {
   function_name = "PresignupCognito"
   source_bucket = var.lambda_source_bucket
   source_key    = var.cognito_preauth_handler_source_key
-  environment_variables =  {
-    table_name   = var.dynamodb_table_name
+  environment_variables = {
+    table_name = var.dynamodb_table_name
   }
 
   additional_policy    = false
