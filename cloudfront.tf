@@ -42,9 +42,9 @@ resource "aws_cloudfront_distribution" "cdg_distribution" {
     }
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 120
-    default_ttl            = 120
-    max_ttl                = 120
+    min_ttl                = 604800
+    default_ttl            = 604800
+    max_ttl                = 604800
     compress               = true
     function_association {
       event_type   = "viewer-request"
@@ -57,9 +57,9 @@ resource "aws_cloudfront_distribution" "cdg_distribution" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3-${local.computed_dynamic_contents_bucket_name}"
 
-    default_ttl = 300
-    min_ttl     = 300
-    max_ttl     = 300
+    default_ttl = 3600
+    min_ttl     = 3600
+    max_ttl     = 3600
     compress    = true
     forwarded_values {
       query_string = false
@@ -76,9 +76,9 @@ resource "aws_cloudfront_distribution" "cdg_distribution" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3-${local.computed_dynamic_contents_bucket_name}"
 
-    default_ttl = 3600
-    min_ttl     = 3600
-    max_ttl     = 3600
+    default_ttl = 604800
+    min_ttl     = 604800
+    max_ttl     = 604800
     compress    = true
     forwarded_values {
       query_string = false
